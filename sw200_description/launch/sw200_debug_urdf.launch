@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <arg name="gui" default="true" />
+
+  <!-- load sw200 URDF -->
+  <include file="$(find sw200_description)/launch/upload_sw200_urdf.launch" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="$(arg gui)"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sw200_description)/rviz/sw200_description.rviz" required="true" />
+</launch>

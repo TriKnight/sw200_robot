@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- 
+    Author: Minh Tri Knight
+    Smartway Robotics
+    email: robotlabvn@gmail.com
+-->
+<launch>
+  <!-- Launch the Realsense wrapper node -->
+  <arg name="realsense"          default="true"  />
+  <!-- Enable/Disable LED effect -->
+  <arg name="effect"       default="true" />
+  <!-- Enable/Disable sensor fusion -->
+  <arg name="filter"       default="true" />
+  
+  <!-- USB port selection -->
+  <arg name="ttyMOTOR"     default="/dev/ttyACM1" />
+  <arg name="ttyLIDAR"     default="/dev/ttyACM3" />
+  <arg name="ttyEFFECT"     default="/dev/ttyACM2" />
+  
+
+
+  <!-- Launch LIDAR sensor -->
+  <include file="$(find sw200_bringup)/launch/include/lidar.launch">
+       
+  </include>
+
+  <!-- Launch IMU sensor -->
+
+  <include file="$(find sw200_bringup)/launch/include/imu.launch">
+        <arg name="port"             value="$(arg ttyIMU)"   />
+  </include>
+
+
+  <!-- Start realsense camera  -->
+  <group if="$(arg realsense)">
+    <include file="$(find sw200_bringup)/launch/include/realsense.launch">
+    </include>
+  </group> 	
+
+  <!-- Load motor control hardware interface -->
+  <include file="$(find sw200_bringup)/launch/include/driver.launch">
+    <!-- Set TTY motor controller -->
+    <arg name="port"             value="$(arg ttyMOTOR)" />
+  </include>
+
+  <!-- Load controller -->
+  <include file="$(find sw200_control)/launch/control.launch">
+    <!-- Publish odom TF from motor controller -->
+    <arg name="enable_odom_tf"     value="false" />
+    <!-- Launch filter externally. See below -->
+    <arg name="filter"             value="false" />
+  </include>
+  
+  
+  <!-- Launch diagnostic aggregator -->
+  <include file="$(find sw200_bringup)/launch/include/diagnostic.launch" />
+ 
+  <!-- Launch LED and AUDIO effect controller -->
+  <!--group if="$(arg effect)">
+    <include file="$(find sw200_hardware)/launch/hardware.launch">
+                <arg name="port"           value="$(arg ttyEFFECT)" />
+    </include>
+  </group-->
+  
+
+  <!-- Launch the joystick -->
+<include file ="$(find teleop_twist_joy)/launch/teleop.launch" />
+
+  <!-- Launch the timer closed -->
+<include file ="$(find timer_close)/launch/timer_test.launch" />
+
+</launch>
