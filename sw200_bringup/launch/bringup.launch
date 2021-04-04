@@ -16,7 +16,7 @@
   <arg name="ttyMOTOR"     default="/dev/ttyACM1" />
   <arg name="ttyLIDAR"     default="/dev/ttyACM3" />
   <arg name="ttyEFFECT"     default="/dev/ttyACM2" />
-  
+   <arg name="ttyIMU"     default="/dev/ttyACM0" />
 
 
   <!-- Launch LIDAR sensor -->

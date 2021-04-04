@@ -1,17 +1,30 @@
 <?xml version="1.0"?>
 <launch>
 
+
  <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
-  <!-- Load robot description -->
-  <include file="$(find sw200_description)/launch/description.launch" >
+ <arg name="tf_prefix" default="" doc="tf_prefix to be used by gazebo plugins and in the robot's urdf etc." />
+  <arg name="prepend_prefix_to_laser_frame" default="false" doc="Set this to 'true' if you don't start the spawn_model node inside a namespace."/>
+
+  <arg name="prefix" value="$(arg tf_prefix)/" if="$(eval tf_prefix != '')" /> <!-- $(arg prefix) is used in all the config files! TODO: For multiple robots, create groups when loading the parameters to overwrite the arg? -->
+  <arg name="prefix" value=""                  unless="$(eval tf_prefix != '')" />
+
+  <arg name="model_name" default="sw200" doc="Name of the Gazebo robot model (needs to be different for each robot)" />
+
+
+  <!-- Load Robot description URDF -->
+  <include file="$(find sw200_description)/launch/upload_sw200_urdf.launch">
+    <arg name="tf_prefix"                     value="$(arg tf_prefix)" />
+    <arg name="prepend_prefix_to_laser_frame" value="$(arg prepend_prefix_to_laser_frame)" />
   </include>
 
-  <!-- Load controller configuration -->
-  <rosparam command="load" file="$(find sw200_control)/config/control.yaml" />
+   <!-- Load ros_control controller configurations -->
+  <rosparam file="$(find sw200_description)/config/joint_state_controller.yaml" command="load" />
+  <rosparam file="$(find sw200_description)/config/diffdrive_controller.yaml" command="load" subst_value="true" />
 
-  <!-- Spawn controllers -->
-  <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
-        args="sw200_joint_publisher sw200_velocity_controller"/>
+  <!-- Start the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
+    args="joint_state_controller mobile_base_controller"/>
 
   <!-- Start EKF for localization -->
   <group if="$(arg enable_ekf)" >

@@ -13,7 +13,7 @@
     <!-- load serial port   -->
     <param name="port"         type="string" value="$(arg port)"/>
     <!-- load configuration -->
-    <rosparam command="load" file="$(find mybot_bringup)/config/razor.yaml" />
+    <rosparam command="load" file="$(find sw200_bringup)/config/razor.yaml" />
     <!-- Remap imu data     -->
     <remap from="imu" to="imu/data"/>
   </node>

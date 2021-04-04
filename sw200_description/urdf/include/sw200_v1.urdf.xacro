@@ -14,7 +14,7 @@
 
   <xacro:property name="sw200_base_mass" value="58.0" />
 
-  <xacro:property name="sw200_act_wheel_radius" value="0.09" />
+  <xacro:property name="sw200_act_wheel_radius" value="0.0625" />
   <xacro:property name="sw200_act_wheel_width" value="0.050" />
   <xacro:property name="sw200_act_wheel_mass" value="5.0" />
   <xacro:property name="sw200_act_wheel_dx" value="-0.107646" />
