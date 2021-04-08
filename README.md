@@ -16,7 +16,7 @@ Gazebo demo (existing map)
 
 ```bash
 ### gazebo:
-roslaunch sw200_gazebo mir_maze_world.launch
+roslaunch sw200_gazebo sw200_maze_world.launch
 rosservice call /gazebo/unpause_physics   # or click the "start" button in the Gazebo GUI
 
 ### localization:
