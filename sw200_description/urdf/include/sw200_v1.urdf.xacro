@@ -8,24 +8,25 @@
   <xacro:include filename="$(find sw200_description)/urdf/include/sw200.gazebo.xacro" />
   <xacro:include filename="$(find sw200_description)/urdf/include/sw200.transmission.xacro" />
   <xacro:include filename="$(find sw200_description)/urdf/include/sick_551.urdf.xacro" />
-
   <xacro:include filename="$(find sw200_description)/urdf/include/_d435.urdf.xacro" />
+  <xacro:include filename="$(find sw200_description)/urdf/include/urm04_sensor.xacro" />
+
   <xacro:property name="deg_to_rad" value="0.017453293" />
 
-  <xacro:property name="sw200_base_mass" value="58.0" />
+    <xacro:property name="sw200_base_mass" value="40" />
 
-  <xacro:property name="sw200_act_wheel_radius" value="0.0625" />
-  <xacro:property name="sw200_act_wheel_width" value="0.050" />
-  <xacro:property name="sw200_act_wheel_mass" value="5.0" />
-  <xacro:property name="sw200_act_wheel_dx" value="-0.107646" />
-  <xacro:property name="sw200_act_wheel_dy" value="0.222604" />
+  <xacro:property name="sw200_act_wheel_radius" value="0.09" />
+  <xacro:property name="sw200_act_wheel_width" value="0.032" />
+  <xacro:property name="sw200_act_wheel_mass" value="0.9" />
+  <xacro:property name="sw200_act_wheel_dx" value="0" />
+  <xacro:property name="sw200_act_wheel_dy" value="0.272604" />
 
-  <xacro:property name="sw200_caster_wheel_radius" value="0.064" />
-  <xacro:property name="sw200_caster_wheel_width" value="0.030" />
+  <xacro:property name="sw200_caster_wheel_radius" value="0.0625" />
+  <xacro:property name="sw200_caster_wheel_width" value="${sw200_act_wheel_width}" />
   <xacro:property name="sw200_caster_wheel_mass" value="${sw200_act_wheel_mass}" />
   <xacro:property name="sw200_caster_wheel_dx" value="-0.0382" />
   <xacro:property name="sw200_caster_wheel_dy" value="0" />
-  <xacro:property name="sw200_caster_wheel_dz" value="-0.094" />
+  <xacro:property name="sw200_caster_wheel_dz" value="-0.099" />
   <xacro:property name="sw200_front_caster_wheel_base_dx" value="0.341346" />
   <xacro:property name="sw200_back_caster_wheel_base_dx" value="-0.30" />
   <xacro:property name="sw200_caster_wheel_base_dy" value="0.25" />
@@ -49,14 +50,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://sw200_description/meshes/visual/wheel.stl" />
+          <mesh filename="package://sw200_description/meshes/visual/wheel1.STL" />
         </geometry>
         <xacro:insert_block name="material_dark_grey" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://sw200_description/meshes/visual/wheel.stl" />
+          <mesh filename="package://sw200_description/meshes/visual/wheel1.STL" />
         </geometry>
       </collision>
     </link>
@@ -124,6 +125,7 @@
           <mesh filename="package://sw200_description/meshes/visual/wheel.stl" />
         </geometry>
         <xacro:insert_block name="material_dark_grey" />
+        
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -147,27 +149,27 @@
     </joint>
 
     <link name="${prefix}base_link">
-      <xacro:box_inertial mass="${sw200_base_mass}" x="0.9" y="0.58" z="0.3">
-        <origin xyz="${sw200_act_wheel_dx} 0 0.20" rpy="0 0 0" />
+      <xacro:box_inertial mass="${sw200_base_mass}" x="0.986" y="0.636" z="0.220">
+        <origin xyz="${sw200_act_wheel_dx} 0 0.03180" rpy="0 0 0" />
       </xacro:box_inertial>
       <visual>
-        <origin xyz="0.107646 -0.78 -0.5" rpy="1.5707 0 3.14159" />
+        <origin xyz="0.11350 -0.77931 -0.51677" rpy="1.5707 0 3.14159" />
         <geometry>
           <!--mesh filename="package://sw200_description/meshes/visual/sw200_100_base.stl" /-->
-          <mesh filename="package://sw200_description/meshes/visual/robot.STL" />
+          <mesh filename="package://sw200_description/meshes/visual/robot_3.STL" />
         </geometry>
         <xacro:insert_block name="material_white" />
       </visual>
       <collision>
-        <origin xyz="0.107646 -0.78 -0.5" rpy="1.5707 0 3.14159" />
+        <origin xyz="0.11350 -0.77931 -0.51677" rpy="1.5707 0 3.14159" />
         <geometry>
         <!--mesh filename="package://sw200_description/meshes/visual/sw200_100_base.stl" /-->
-          <mesh filename="package://sw200_description/meshes/collision/robot.STL" />
+          <mesh filename="package://sw200_description/meshes/collision/robot_3.STL" />
         </geometry>
       </collision>
     </link>
     <gazebo reference="${prefix}base_link">
-      <material>Gazebo/White</material>
+      <material>Gazebo/Grey</material>
     </gazebo>
 
     <!-- IMU -->
@@ -197,37 +199,94 @@
   
 
   <xacro:sensor_d435 parent="${prefix}base_link" name="camera_top">
-    <origin xyz="0.45 0 0.15" rpy="0 0 0"/>
+    <origin xyz="0.46 0 0.13" rpy="0 0 0"/>
+    
   </xacro:sensor_d435>
-   
+
+       <gazebo reference="camera_top">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 
     <!-- Laser scanners -->
     <joint name="${prefix}base_link_to_front_laser_joint" type="fixed">
       <parent link="${prefix}base_link" />
       <child link="${prefix}front_laser_link" />
-      <origin xyz="0.35 0.0 0.22" rpy="0.0 3.14 3.14" />  <!-- from visually matching up the meshes of the sw200 and the laser scanner -->
+      <origin xyz="0.35 0.0 0.21" rpy="0.0 3.14 3.14" />  <!-- from visually matching up the meshes of the sw200 and the laser scanner -->
     </joint>
     <xacro:sick_551 prefix="${prefix}" link="front_laser_link" topic="f_scan"
                      prepend_prefix_to_laser_frame="$(arg prepend_prefix_to_laser_frame)" />
 
+    <!-- Ultrasound sensors  top-->
 
+  <xacro:urm04_sensor frame_name="left_sensor" ros_topic="left_sensor" update_rate="10" min_range="0.04" max_range="0.1" horizontal_field_of_view="1.04" vertical_field_of_view="0.04" ray_count="2" />
+  <link name="left_sensor">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0" />
+      <geometry>
+        <mesh filename="package://sw200_description/meshes/visual/urm04.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
+    <joint name="left_sensor_joint" type="fixed">
+    <origin xyz="0.48 0.21 0.16139" rpy="0 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="left_sensor" />
+  </joint>
+
+
+   <xacro:urm04_sensor frame_name="right_sensor" ros_topic="right_sensor" update_rate="10" min_range="0.04" max_range="0.1" horizontal_field_of_view="1.04" vertical_field_of_view="0.04" ray_count="2" />
+  <link name="right_sensor">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0" />
+      <geometry>
+        <mesh filename="package://sw200_description/meshes/visual/urm04.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
+    <joint name="right_sensor_joint" type="fixed">
+    <origin xyz="0.48 -0.21 0.16139" rpy="0 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="right_sensor" />
+  </joint>
+    <!-- Ultrasound sensors  botton-->
+
+  <xacro:urm04_sensor frame_name="front_sensor" ros_topic="front_sensor" update_rate="10" min_range="0.04" max_range="0.1" horizontal_field_of_view="1.04" vertical_field_of_view="0.04" ray_count="2" />
+  <link name="front_sensor">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0" />
+      <geometry>
+        <mesh filename="package://sw200_description/meshes/visual/urm04.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
+    <joint name="front_sensor" type="fixed">
+    <origin xyz="-0.49 0.21 0.16139" rpy="0 0 -3.14" />
+    <parent link="${prefix}base_link"/>
+    <child link="front_sensor" />
+  </joint>
+
+
+   <xacro:urm04_sensor frame_name="rear_sensor" ros_topic="rear_sensor" update_rate="10" min_range="0.04" max_range="0.1" horizontal_field_of_view="1.04" vertical_field_of_view="0.04" ray_count="2" />
+  <link name="rear_sensor">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0" />
+      <geometry>
+        <mesh filename="package://sw200_description/meshes/visual/urm04.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
+    <joint name="rear_sensor" type="fixed">
+    <origin xyz="-0.49 -0.21 0.16139" rpy="0 0 -3.14" />
+    <parent link="${prefix}base_link"/>
+    <child link="rear_sensor" />
+  </joint>
+   
     
-    <!-- Ultrasound sensors -->
-    <joint name="${prefix}us_1_joint" type="fixed">   <!-- right ultrasound -->
-      <parent link="${prefix}base_link" />
-      <child link="${prefix}us_1_frame" />
-      <origin xyz="0.45 -0.12 0.16 " rpy="0 0 0" />  <!-- from visually matching to the mesh of the sw200 -->
-    </joint>
-
-    <link name="${prefix}us_1_frame" />
-
-    <joint name="${prefix}us_2_joint" type="fixed">   <!-- left ultrasound -->
-      <parent link="${prefix}base_link" />
-      <child link="${prefix}us_2_frame" />
-      <origin xyz="0.45 0.12 0.16 " rpy="0 0 0" />  <!-- from visually matching to the mesh of the sw200 -->
-    </joint>
-
-    <link name="${prefix}us_2_frame" />
+  
 
     <!-- wheels -->
     <xacro:actuated_wheel prefix="${prefix}" locationprefix="left" locationright="-1"/>

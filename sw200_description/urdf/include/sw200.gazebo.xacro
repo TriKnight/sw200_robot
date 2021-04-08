@@ -35,7 +35,24 @@
       <minDepth>0.01</minDepth>
     </gazebo>
   </xacro:macro>
+  <gazebo reference="left_sensor">
+    <material>Gazebo/Black</material>
+  </gazebo>
 
+   <gazebo reference="front_sensor">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+   <gazebo reference="right_sensor">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+   <gazebo reference="rear_sensor">
+    <material>Gazebo/Black</material>
+  </gazebo>
+     <gazebo reference="camera_top">
+    <material>Gazebo/Black</material>
+  </gazebo>
   <xacro:macro name="set_all_wheel_frictions" params="prefix">
     <xacro:set_wheel_friction link="${prefix}left_wheel_link" friction="200"/>
     <xacro:set_wheel_friction link="${prefix}right_wheel_link" friction="200"/>
