@@ -57,15 +57,22 @@ Note: your dock must have the same cross sectional dimensions as the fetch charg
 # General Testing
 * To test the docking program without having to publish to **battery_voltage** and set the far goal parameters, drive/place the robot about 1 metre away from the dock with the robot pointing towards it and run the following lines:
 
-* **roslaunch fetch_open_auto_dock auto_dock.launch**
+```
+roslaunch fetch_open_auto_dock auto_dock.launch
+```
 
- * Followed by **rosrun fetch_open_auto_dock dock_on_button.py**
+ * Followed by 
+```
+rosrun fetch_open_auto_dock dock_on_button.py
+```
  
 * To test the undocking program by itself **(warning: robot will reverse and spin 180 degrees)** run the following lines:
 
-* **roslaunch fetch_open_auto_dock auto_dock.launch**
+```
+roslaunch fetch_open_auto_dock auto_dock.launch
  
-* **rosrun fetch_open_auto_dock undock_on_button.py**
+rosrun fetch_open_auto_dock undock_on_button.py
+```
 
 # General Notes
 * It is recommended to place the near goal about 1-1.5 metres away from the dock and have the robot point towards the dock. 
