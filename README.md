@@ -1,4 +1,9 @@
 # sw200_robot
+# install nvidia driver
+```
+ubuntu-drivers devices
+sudo ubuntu-drivers autoinstall
+```
 ## install
 ```
 sudo apt-get install ros-melodic-gazebo-ros-control
