@@ -38,12 +38,12 @@ rviz -d $(rospack find sw200_navigation)/rviz/navigation.rviz
 ```
 Auto docking
 --------------------------
-# Lidar Based Auto Docking
+### Lidar Based Auto Docking
 
 General autodocking package for ROS based robots. hehe. :)
 Note: your dock must have the same cross sectional dimensions as the fetch charging dock.stl file.  Front face is 300mm long, Each side is 100mm long, at 45 degree angle
 
-# Setup/Installation
+### Setup/Installation
  * Firstly, clone this package into your catkin/src folder using git clone. 
  * Next, use catkin_make to compile the package.
  * Once the package has been compiled, open auto_dock.launch(which is located in the launch folder) and modify the remap statements as neccessary. 
@@ -54,7 +54,7 @@ Note: your dock must have the same cross sectional dimensions as the fetch charg
  
  * To run the autodock program, type **roslaunch fetch_open_auto_dock auto_dock.launch**
  
-# General Testing
+### General Testing
 * To test the docking program without having to publish to **battery_voltage** and set the far goal parameters, drive/place the robot about 1 metre away from the dock with the robot pointing towards it and run the following lines:
 
 ```
