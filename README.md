@@ -6,6 +6,8 @@ sudo ubuntu-drivers autoinstall
 ```
 ## install
 ```
+sudo apt-get install ros-melodic-joint-state-publisher-gui
+
 sudo apt-get install ros-melodic-gazebo-ros-control
 
 sudo apt-get install ros-melodic-interactive-marker-twist-server
