@@ -17,6 +17,8 @@ sudo apt-get install ros-melodic-twist-mux
 sudo apt-get install ros-melodic-realsense2-*
 
  sudo apt-get install ros-melodic-serial
+ 
+ sudo apt-get install libsvm-dev
  ```
 
 
