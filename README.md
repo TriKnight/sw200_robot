@@ -20,7 +20,12 @@ sudo apt-get install ros-melodic-realsense2-*
  
  sudo apt-get install libsvm-dev
  ```
+## Open CV using
 
+Check open CV version, we use open CV 3 version
+```
+dpkg -l | grep libopencv
+```
 
 Gazebo demo (existing map)
 --------------------------
