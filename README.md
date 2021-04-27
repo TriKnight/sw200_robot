@@ -19,6 +19,13 @@ sudo apt-get install ros-melodic-realsense2-*
  sudo apt-get install ros-melodic-serial
  
  sudo apt-get install libsvm-dev
+ 
+ git clone -b melodic https://github.com/spencer-project/spencer_people_tracking
+ 
+ git clone -b melodic-devel https://github.com/mdrwiega/depth_nav_tools
+
+ 
+
  ```
 ## Open CV using
 
