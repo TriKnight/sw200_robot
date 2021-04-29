@@ -27,6 +27,8 @@ git clone -b melodic-devel https://github.com/mdrwiega/depth_nav_tools
 sudo apt-get install libsdl-image1.2-dev
  
 sudo apt-get install libsdl-dev
+
+sudo apt-get install ros-melodic-robot-nav-rviz-plugins
  
 
  ```
