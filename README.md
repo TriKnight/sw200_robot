@@ -32,6 +32,12 @@ sudo apt-get install ros-melodic-robot-nav-rviz-plugins
  
 
  ```
+## Install PIP
+```
+sudo apt-get install python-pip
+pip install vpython
+```
+ 
 ## Open CV using
 
 Check open CV version, we use open CV 3 version
