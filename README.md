@@ -29,7 +29,13 @@ sudo apt-get install libsdl-image1.2-dev
 sudo apt-get install libsdl-dev
 
 sudo apt-get install ros-melodic-robot-nav-rviz-plugins
- 
+
+//Realsense
+sudo apt-get install librealsense2-dbg
+
+sudo apt-get install librealsense2-dev 
+
+sudo apt-get install librealsense2-utils
 
  ```
 ## Install PIP
