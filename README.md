@@ -43,7 +43,28 @@ sudo apt-get install librealsense2-utils
 sudo apt-get install python-pip
 pip install vpython
 ```
- 
+## Install dependences
+Update source. This step is necessary for either binary or source install.
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+sudo apt-get update -qq
+```
+For a source install
+```
+# use rosdep to install all dependencies (including ROS itself)
+sudo apt-get update -qq
+sudo apt-get install -qq -y python-rosdep
+sudo rosdep init
+rosdep update
+rosdep install --from-paths ./ -i -y --rosdistro melodic
+
+# build all packages in the catkin workspace
+source /opt/ros/melodic/setup.bash
+catkin_init_workspace
+cd ~/catkin_ws
+catkin_make -DCMAKE_BUILD_TYPE=RelWithDebugInfo
+```
 ## Open CV using
 
 Check open CV version, we use open CV 3 version
