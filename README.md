@@ -90,6 +90,23 @@ roslaunch sw200_navigation start_planner.launch \
     virtual_walls_map_file:=$(rospack find sw200_gazebo)/maps/maze_virtual_walls.yaml
 rviz -d $(rospack find sw200_navigation)/rviz/navigation.rviz
 ```
+
+Gazebo demo (mapping)
+---------------------
+
+```bash
+### gazebo:
+roslaunch sw200_gazebo mir_maze_world.launch
+rosservice call /gazebo/unpause_physics   # or click the "start" button in the Gazebo GUI
+
+### mapping:
+roslaunch sw200_navigation hector_mapping.launch
+
+# navigation:
+roslaunch sw200_navigation move_base.xml with_virtual_walls:=false
+rviz -d $(rospack find sw200_navigation)/rviz/navigation.rviz
+```
+
 Auto docking
 --------------------------
 ### Lidar Based Auto Docking
