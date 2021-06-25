@@ -133,3 +133,4 @@ rosrun fetch_open_auto_dock undock_on_button.py
 * Obstacle avoidance is not implemented here. Ensure dock area is clear before docking robot. 
 
 
+
