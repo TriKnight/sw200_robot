@@ -48,6 +48,7 @@ git clone -b noetic-devel https://github.com/rst-tu-dortmund/teb_local_planner.g
 
 git clone https://github.com/rst-tu-dortmund/costmap_converter.git
 
+git clone https://github.com/magazino/move_base_flex
 
 
  ```
