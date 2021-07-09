@@ -46,6 +46,7 @@ sudo apt-get install ros-melodic-sbpl*
 
 git clone -b noetic-devel https://github.com/rst-tu-dortmund/teb_local_planner.git
 
+git clone https://github.com/rst-tu-dortmund/costmap_converter.git
 
 
 
