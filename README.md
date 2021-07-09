@@ -39,6 +39,7 @@ sudo apt-get install librealsense2-utils
 
 // Navigation
 sudo apt-get install -y libsuitesparse-dev
+sudo apt-get install ros-noetic-libg2o
 
 git clone -b melodic-devel https://github.com/ros-planning/navigation_experimental
 
@@ -51,6 +52,7 @@ git clone -b noetic-devel https://github.com/rst-tu-dortmund/teb_local_planner.g
 git clone https://github.com/rst-tu-dortmund/costmap_converter.git
 
 git clone https://github.com/magazino/move_base_flex
+
 
 
  ```
