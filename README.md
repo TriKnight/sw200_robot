@@ -38,6 +38,8 @@ sudo apt-get install librealsense2-dev
 sudo apt-get install librealsense2-utils
 
 // Navigation
+sudo apt-get install -y libsuitesparse-dev
+
 git clone -b melodic-devel https://github.com/ros-planning/navigation_experimental
 
 git clone -b melodic-devel https://github.com/ros-planning/navigation
